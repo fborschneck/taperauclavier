@@ -5,9 +5,10 @@ pensée pour les enfants à partir de 7 ans.
 
 ## Fonctionnalités
 
-- Cinq niveaux et quinze exercices : repères F/J, rangée du milieu, rangée
-  du haut, rangée du bas et phrases complètes.
-- Clavier interactif avec contours colorés par doigt, chiffres et accents.
+- Dix niveaux et cinquante exercices : repères F/J, rangées du clavier,
+  phrases complètes, accents, symboles, ponctuation, précision et rythme.
+- Clavier interactif avec contours colorés par doigt, chiffres, accents,
+  ponctuation et symbole euro.
 - Mains dessinées en SVG avec indication du doigt à utiliser.
 - Mode exercice sans les distractions de l'accueil.
 - Consignes vocales avec choix parmi les voix françaises locales disponibles.
@@ -45,9 +46,15 @@ incluses. La vitesse est calculée à partir des caractères corrects, espaces
 compris : cinq caractères représentent un mot. Elle reste à zéro pendant la
 première seconde, puis s'affiche en mots par minute arrondis.
 
-Les boutons précédent et suivant parcourent en boucle les exercices du niveau
-en cours. La continuation après une réussite passe automatiquement au niveau
-suivant à la fin des trois exercices. Changer ou recommencer un exercice
+À partir du niveau 5, la casse doit être respectée. Une indication écrite et
+visuelle précise si la lettre attendue est une majuscule ou une minuscule. Pour
+une combinaison à deux doigts, deux cartes séparent le doigt qui maintient
+`Maj` ou `Alt Gr` du doigt qui tape le caractère. Les deux touches et les deux
+doigts sont mis en évidence. La consigne vocale les annonce également séparément.
+
+Les boutons précédent et suivant parcourent en boucle les cinq exercices du
+niveau en cours. La continuation après une réussite passe automatiquement au
+niveau suivant à la fin des cinq exercices. Changer ou recommencer un exercice
 réinitialise la tentative, le temps et la vitesse.
 
 ## Voix, connexion et données

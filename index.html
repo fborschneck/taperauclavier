@@ -61,7 +61,7 @@
           <p class="eyebrow purple">TON AVENTURE</p>
           <h2 id="levelsTitle">Choisis ton niveau</h2>
         </div>
-        <p id="progressLabel">0 niveau terminé sur 5</p>
+        <p id="progressLabel">0 niveau terminé sur 10</p>
       </div>
       <div class="levels" id="levelList"></div>
     </section>
@@ -100,7 +100,7 @@
       <p class="voice-status" id="voiceStatus" role="status"></p>
 
       <div class="target-zone" aria-live="polite">
-        <p class="target-label">Tape les lettres</p>
+        <p class="target-label" id="targetLabel">Tape les lettres</p>
         <div class="target-text" id="targetText"></div>
         <div class="progress-track"><span id="exerciseProgress"></span></div>
       </div>
@@ -110,9 +110,15 @@
           <span class="hand-label">MAIN GAUCHE</span>
           <svg class="hand left-hand" id="leftHand" viewBox="0 0 180 220" role="img" aria-label="Main gauche, doigts colorés comme les touches du clavier"></svg>
         </div>
-        <div class="finger-callout">
-          <span id="fingerIcon">☝️</span>
-          <p>Utilise ton<br><strong id="fingerName">index gauche</strong></p>
+        <div class="finger-instructions">
+          <div class="finger-callout modifier-callout" id="modifierCallout" hidden>
+            <span id="modifierFingerIcon">🤙</span>
+            <p id="modifierInstruction">Maintiens la touche Maj gauche avec ton auriculaire gauche.</p>
+          </div>
+          <div class="finger-callout">
+            <span id="fingerIcon">☝️</span>
+            <p id="primaryInstruction" role="status">Appuie sur la touche F avec ton index gauche pour faire la lettre f.</p>
+          </div>
         </div>
         <div class="hand-side">
           <span class="hand-label">MAIN DROITE</span>

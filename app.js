@@ -7,15 +7,16 @@ const fingerData = {
   rm: { name: "majeur droit", color: "var(--middle)", icon: "🖐️" },
   rr: { name: "annulaire droit", color: "var(--ring)", icon: "✋" },
   rp: { name: "auriculaire droit", color: "var(--pinky)", icon: "🤙" },
-  lt: { name: "pouce", color: "var(--thumb)", icon: "👍" },
-  rt: { name: "pouce", color: "var(--thumb)", icon: "👍" }
+  lt: { name: "pouce gauche", color: "var(--thumb)", icon: "👍" },
+  rt: { name: "pouce droit", color: "var(--thumb)", icon: "👍" }
 };
 
 const keyFingers = {
   "²": "lp", "&": "lp", "é": "lr", "\"": "lm", "'": "li", "(": "li", "-": "ri", "è": "ri", "_": "rm", "ç": "rr", "à": "rp", ")": "rp", "=": "rp",
-  a: "lp", z: "lr", e: "lm", r: "li", t: "li", y: "ri", u: "ri", i: "rm", o: "rr", p: "rp", "^": "rp", "$": "rp",
+  a: "lp", z: "lr", e: "lm", "€": "lm", r: "li", t: "li", y: "ri", u: "ri", i: "rm", o: "rr", p: "rp", "^": "rp", "$": "rp",
   q: "lp", s: "lr", d: "lm", f: "li", g: "li", h: "ri", j: "ri", k: "rm", l: "rr", m: "rp", "ù": "rp", "*": "rp",
   w: "lp", x: "lr", c: "lm", v: "li", b: "li", n: "ri", ",": "rm", "?": "rm", ";": "rr", ".": "rr", ":": "rp", "/": "rp", "!": "rp", "§": "rp",
+  shiftleft: "lp", shiftright: "rp", altgraph: "rt",
   " ": "rt"
 };
 
@@ -24,13 +25,13 @@ const keyboardRows = [
     ["²"], ["&", "", "&", "1"], ["é", "", "é", "2"], ["\"", "", "\"", "3"], ["'", "", "'", "4"], ["(", "", "(", "5"], ["-", "", "-", "6"], ["è", "", "è", "7"], ["_", "", "_", "8"], ["ç", "", "ç", "9"], ["à", "", "à", "0"], [")"], ["="], ["⌫", "wide-18", "Backspace"]
   ],
   [
-    ["Tab", "wide-15", "Tab"], ["A"], ["Z"], ["E"], ["R"], ["T"], ["Y"], ["U"], ["I"], ["O"], ["P"], ["^"], ["$"], ["Entrée ↵", "enter-key", "Enter"]
+    ["Tab", "wide-15", "Tab"], ["A"], ["Z"], ["E", "", "e", "€", "Alt Gr"], ["R"], ["T"], ["Y"], ["U"], ["I"], ["O"], ["P"], ["^"], ["$"], ["Entrée ↵", "enter-key", "Enter"]
   ],
   [
     ["Verr. Maj", "caps-key", "CapsLock"], ["Q"], ["S"], ["D"], ["F"], ["G"], ["H"], ["J"], ["K"], ["L"], ["M"], ["ù"], ["*", "", "*"]
   ],
   [
-    ["Maj", "wide-22", "Shift"], ["W"], ["X"], ["C"], ["V"], ["B"], ["N"], [","], [";"], [":"], ["!"], ["Maj", "wide-22", "Shift"]
+    ["Maj", "wide-22 shift-key shift-left", "ShiftLeft"], ["W"], ["X"], ["C"], ["V"], ["B"], ["N"], [",", "", ",", "?"], [";", "", ";", "."], [":"], ["!"], ["Maj", "wide-22 shift-key shift-right", "ShiftRight"]
   ],
   [
     ["Ctrl", "wide-15", "Control"], ["Alt", "wide-15", "Alt"], ["Espace", "space-key", " "], ["Alt Gr", "wide-15", "AltGraph"], ["Ctrl", "wide-15", "Control"]
@@ -43,37 +44,74 @@ const levels = [
     subtitle: "F et J",
     icon: "👀",
     coach: "Pose tes index sur F et J. Sens-tu les petits traits sous tes doigts ?",
-    exercises: ["fj jf fj jf", "ff jj fj jf", "fjf jfj ff jj"]
+    exercises: ["fj jf fj jf", "ff jj fj jf", "fjf jfj ff jj", "fff jjj fjf jfj", "jf fj jj ff fj"]
   },
   {
     title: "La rangée du milieu",
     subtitle: "A à M",
     icon: "🏠",
     coach: "Tes doigts restent sur la rangée du milieu. Reviens toujours sur F et J !",
-    exercises: ["qsdf jklm", "fa ja da ka", "salsa hall jazz"]
+    exercises: ["qsdf jklm", "fa ja da ka", "salsa hall jazz", "gaga haha lala", "flash salsa hall"]
   },
   {
     title: "La rangée du haut",
     subtitle: "A à P",
     icon: "🚀",
     coach: "Étire doucement tes doigts vers le haut, puis reviens à la maison.",
-    exercises: ["az er ty ui op", "papa rit fort", "le petit pirate"]
+    exercises: ["az er ty ui op", "papa rit fort", "le petit pirate", "azerty uiop", "papi joue ici"]
   },
   {
     title: "La rangée du bas",
     subtitle: "W à !",
     icon: "🌈",
     coach: "Descends tes doigts sans bouger les poignets. Tu maîtrises presque tout le clavier !",
-    exercises: ["wx cv bn ,;", "un bon avion", "vive le carnaval"]
+    exercises: ["wx cv bn ,;", "un bon avion", "vive le carnaval", "banane kiwi", "wagon avec cinq"]
   },
   {
     title: "Les super phrases",
     subtitle: "Tout le clavier",
     icon: "🏆",
     coach: "Lis quelques lettres en avance et garde un rythme régulier. À toi de jouer !",
-    exercises: ["Le chat joue dans le jardin.", "Mon vélo rouge va très vite !", "Bravo, je tape avec mes dix doigts !"]
+    exercises: ["Le chat joue dans le jardin.", "Mon vélo rouge va très vite !", "Bravo, je tape avec mes dix doigts !", "Où est caché le petit lapin ?", "Ce matin, le soleil brille."]
+  },
+  {
+    title: "Accents et symboles",
+    subtitle: "É, È, À, Ç, Ù et €",
+    icon: "✨",
+    coach: "Repère les accents et les symboles. Prends ton temps pour choisir la bonne touche.",
+    exercises: ["é è à ç ù", "été déjà là", "où est le vélo ?", "ça coûte un €", "L'été est arrivé."]
+  },
+  {
+    title: "Les mots utiles",
+    subtitle: "Le quotidien",
+    icon: "📚",
+    coach: "Enchaîne les lettres sans regarder tes mains et reviens toujours sur F et J.",
+    exercises: ["bonjour merci", "papa maman école", "chat chien lapin", "rouge jaune violet", "clavier écran souris"]
+  },
+  {
+    title: "Questions et ponctuation",
+    subtitle: "Virgule, point et question",
+    icon: "❓",
+    coach: "Observe bien les virgules, les points et les points d'interrogation avant de taper.",
+    exercises: ["Qui est là ?", "Où va le chat ?", "Oui, bravo !", "Vite, il arrive !", "Tu lis ; puis tu écris."]
+  },
+  {
+    title: "Précision et rythme",
+    subtitle: "Des phrases plus longues",
+    icon: "🎯",
+    coach: "Cherche d'abord la précision. La vitesse viendra naturellement avec un rythme régulier.",
+    exercises: ["Je garde mes doigts bien placés.", "Je tape doucement et sans erreur.", "Mes yeux lisent quelques lettres en avance.", "Un rythme régulier aide à progresser.", "Précision d'abord, vitesse ensuite."]
+  },
+  {
+    title: "Le défi des champions",
+    subtitle: "Maîtrise du clavier",
+    icon: "👑",
+    coach: "Voici le grand défi ! Reste détendu, lis en avance et garde une frappe régulière.",
+    exercises: ["Le petit renard bondit par-dessus la barrière.", "Dans le jardin, trois lapins jouent.", "Mon clavier magique brille de mille couleurs !", "Je peux taper vite tout en restant précis.", "Bravo, j'utilise maintenant mes dix doigts !"]
   }
 ];
+
+const CASE_SENSITIVE_LEVEL_INDEX = 4;
 
 const state = {
   level: 0,
@@ -98,13 +136,17 @@ const elements = {
   keyboard: document.querySelector("#keyboard"),
   levelList: document.querySelector("#levelList"),
   targetText: document.querySelector("#targetText"),
+  targetLabel: document.querySelector("#targetLabel"),
   accuracy: document.querySelector("#accuracy"),
   streak: document.querySelector("#streak"),
   elapsedTime: document.querySelector("#elapsedTime"),
   typingSpeed: document.querySelector("#typingSpeed"),
   exerciseProgress: document.querySelector("#exerciseProgress"),
-  fingerName: document.querySelector("#fingerName"),
   fingerIcon: document.querySelector("#fingerIcon"),
+  primaryInstruction: document.querySelector("#primaryInstruction"),
+  modifierCallout: document.querySelector("#modifierCallout"),
+  modifierFingerIcon: document.querySelector("#modifierFingerIcon"),
+  modifierInstruction: document.querySelector("#modifierInstruction"),
   coachText: document.querySelector("#coachText"),
   lessonNumber: document.querySelector("#lessonNumber"),
   lessonKicker: document.querySelector("#lessonKicker"),
@@ -122,32 +164,41 @@ function createKeyboard() {
   keyboardRows.forEach((row) => {
     const rowElement = document.createElement("div");
     rowElement.className = "keyboard-row";
-    row.forEach(([label, size = "", value = label.toLowerCase(), digit]) => {
+    row.forEach(([label, size = "", value = label.toLowerCase(), alternate, alternateModifier = "Maj"]) => {
       const key = document.createElement("button");
       key.type = "button";
       key.className = `key ${size}`;
       key.textContent = label;
       if (/^[éèçàù]$/.test(label)) key.classList.add("accent-key");
-      if (digit !== undefined) {
-        key.classList.add("number-key");
-        const digitLabel = document.createElement("span");
-        digitLabel.className = "key-digit";
-        digitLabel.textContent = digit;
+      if (alternate !== undefined) {
+        key.classList.add("alternate-key");
+        if (alternateModifier === "Alt Gr") key.classList.add("altgr-key");
+        const alternateLabel = document.createElement("span");
+        alternateLabel.className = "key-alternate";
+        alternateLabel.textContent = alternate;
         const baseLabel = document.createElement("span");
         baseLabel.className = "key-base";
         baseLabel.textContent = label;
-        key.replaceChildren(digitLabel, baseLabel);
-        key.title = `Maj + ${label} : ${digit}`;
+        key.replaceChildren(alternateLabel, baseLabel);
+        key.title = `${alternateModifier} + ${label} : ${alternate}`;
       }
       key.dataset.key = value;
-      key.setAttribute("aria-label", digit !== undefined ? `Touche ${label}, chiffre ${digit} avec Maj` : label === "Espace" ? "Espace" : `Touche ${label}`);
+      key.setAttribute("aria-label", alternate !== undefined ? `Touche ${label}, symbole ${alternate} avec ${alternateModifier}` : label === "Espace" ? "Espace" : `Touche ${label}`);
       const finger = keyFingers[value.toLowerCase()];
       if (finger) {
         key.dataset.finger = finger;
         key.style.setProperty("--key-color", fingerData[finger].color);
       }
       if (["f", "j"].includes(value.toLowerCase())) key.classList.add("home-bump");
-      key.addEventListener("click", () => handleInput(value));
+      key.addEventListener("click", () => {
+        const expected = currentText()[state.position];
+        const input = expected !== undefined && alternate !== undefined && normalized(expected) === normalized(alternate)
+          ? alternate
+          : expected !== undefined && value.length === 1 && normalized(expected) === normalized(value)
+            ? expected
+            : value;
+        handleInput(input);
+      });
       rowElement.appendChild(key);
     });
     elements.keyboard.appendChild(rowElement);
@@ -212,9 +263,9 @@ function renderLevels() {
     button.addEventListener("click", () => selectLevel(index));
     elements.levelList.appendChild(button);
   });
-  const completedCount = Object.keys(state.completed).length;
-  elements.progressLabel.textContent = `${completedCount} niveau${completedCount > 1 ? "x" : ""} terminé${completedCount > 1 ? "s" : ""} sur 5`;
-  elements.totalStars.textContent = Object.values(state.completed).reduce((sum, stars) => sum + stars, 0);
+  const completedCount = levels.filter((_, index) => state.completed[index]).length;
+  elements.progressLabel.textContent = `${completedCount} niveau${completedCount > 1 ? "x" : ""} terminé${completedCount > 1 ? "s" : ""} sur ${levels.length}`;
+  elements.totalStars.textContent = levels.reduce((sum, _, index) => sum + (state.completed[index] || 0), 0);
 }
 
 function selectLevel(index) {
@@ -261,6 +312,9 @@ function resetExercise() {
   elements.lessonKicker.textContent = `NIVEAU ${state.level + 1} • EXERCICE ${state.exercise + 1}/${level.exercises.length}`;
   elements.practiceTitle.textContent = level.title;
   elements.coachText.textContent = level.coach;
+  elements.targetLabel.textContent = state.level >= CASE_SENSITIVE_LEVEL_INDEX
+    ? "Respecte les majuscules et les minuscules"
+    : "Tape les lettres";
   renderTarget();
   updateStats();
   updateGuide();
@@ -283,6 +337,51 @@ function renderTarget() {
 
 function normalized(value) {
   return value.length === 1 ? value.toLocaleLowerCase("fr") : value;
+}
+
+function isLetter(value) {
+  return value.length === 1 && value.toLocaleLowerCase("fr") !== value.toLocaleUpperCase("fr");
+}
+
+function usesCaseGuidance(value) {
+  return state.level >= CASE_SENSITIVE_LEVEL_INDEX && isLetter(value);
+}
+
+function isUppercaseLetter(value) {
+  return isLetter(value) && value === value.toLocaleUpperCase("fr");
+}
+
+function shiftDetailsFor(fingerCode) {
+  return fingerCode.startsWith("l")
+    ? { key: "ShiftRight", fingerCode: "rp", side: "droite" }
+    : { key: "ShiftLeft", fingerCode: "lp", side: "gauche" };
+}
+
+function modifierDetailsFor(value, fingerCode) {
+  if ((usesCaseGuidance(value) && isUppercaseLetter(value)) || ["?", ".", "/", "§"].includes(value)) {
+    const shift = shiftDetailsFor(fingerCode);
+    return { ...shift, label: `Maj ${shift.side}` };
+  }
+  if (value === "€") return { key: "AltGraph", fingerCode: "rt", label: "Alt Gr" };
+  return null;
+}
+
+function baseKeyFor(value) {
+  return { "?": ",", ".": ";", "/": ":", "§": "!", "€": "e" }[value] || value;
+}
+
+function keyName(value) {
+  const name = { " ": "Espace", ",": "virgule", ";": "point-virgule", ":": "deux-points", "!": "point d'exclamation", "'": "apostrophe" }[value];
+  if (name) return name;
+  return /^[a-z]$/i.test(value) ? value.toLocaleUpperCase("fr") : value;
+}
+
+function resultName(value) {
+  const specialNames = { ".": "le point", "?": "le point d'interrogation", "/": "la barre oblique", "§": "le symbole paragraphe", "€": "le symbole euro", " ": "un espace", ",": "la virgule", ";": "le point-virgule", "!": "le point d'exclamation", "'": "l'apostrophe" };
+  if (specialNames[value]) return specialNames[value];
+  if (!isLetter(value)) return `le caractère ${value}`;
+  if (!usesCaseGuidance(value)) return `la lettre ${value}`;
+  return `la lettre ${value} ${isUppercaseLetter(value) ? "majuscule" : "minuscule"}`;
 }
 
 function formatTime(milliseconds) {
@@ -323,7 +422,8 @@ function handleInput(rawKey) {
   startClock();
   state.attempts += 1;
   animateKey(key);
-  if (normalized(key) === normalized(expected)) {
+  const matchesExpected = usesCaseGuidance(expected) ? key === expected : normalized(key) === normalized(expected);
+  if (matchesExpected) {
     state.position += 1;
     state.streak += 1;
     playTone(520 + Math.min(state.streak, 10) * 18, .055);
@@ -350,7 +450,8 @@ function handleInput(rawKey) {
 }
 
 function animateKey(keyValue) {
-  const key = [...document.querySelectorAll(".key")].find((item) => normalized(item.dataset.key) === normalized(keyValue));
+  const baseKey = baseKeyFor(keyValue);
+  const key = [...document.querySelectorAll(".key")].find((item) => normalized(item.dataset.key) === normalized(baseKey));
   if (!key) return;
   key.classList.add("pressed");
   setTimeout(() => key.classList.remove("pressed"), 110);
@@ -366,20 +467,37 @@ function updateStats() {
 function updateGuide() {
   document.querySelectorAll(".key.active, [data-finger].active").forEach((item) => item.classList.remove("active"));
   const expected = currentText()[state.position];
-  if (expected === undefined) return;
+  if (expected === undefined) {
+    elements.modifierCallout.hidden = true;
+    return;
+  }
   const fingerCode = keyFingers[normalized(expected)] || "ri";
   const finger = fingerData[fingerCode];
-  const shiftedKey = { "?": ",", ".": ";", "/": ":", "§": "!" }[expected] || expected;
-  const key = [...document.querySelectorAll(".key")].find((item) => normalized(item.dataset.key) === normalized(shiftedKey));
+  const baseKey = baseKeyFor(expected);
+  const key = [...document.querySelectorAll(".key")].find((item) => normalized(item.dataset.key) === normalized(baseKey));
   key?.classList.add("active");
   document.querySelector(`[data-finger="${fingerCode}"].finger, [data-finger="${fingerCode}"].thumb`)?.classList.add("active");
+  const modifier = modifierDetailsFor(expected, fingerCode);
+  elements.primaryInstruction.textContent = `${modifier ? "Puis appuie" : "Appuie"} sur la touche ${keyName(baseKey)} avec ton ${finger.name} pour faire ${resultName(expected)}.`;
+  if (modifier) {
+    const modifierFinger = fingerData[modifier.fingerCode];
+    document.querySelector(`.key[data-key="${modifier.key}"]`)?.classList.add("active");
+    document.querySelector(`[data-finger="${modifier.fingerCode}"].finger, [data-finger="${modifier.fingerCode}"].thumb`)?.classList.add("active");
+    elements.modifierCallout.hidden = false;
+    elements.modifierCallout.style.setProperty("--callout-color", modifierFinger.color);
+    elements.modifierFingerIcon.textContent = modifierFinger.icon;
+    elements.modifierInstruction.textContent = `Maintiens la touche ${modifier.label} avec ton ${modifierFinger.name}.`;
+  } else {
+    elements.modifierCallout.hidden = true;
+  }
+
   document.documentElement.style.setProperty("--active-finger-color", finger.color);
-  elements.fingerName.textContent = finger.name;
   elements.fingerIcon.textContent = finger.icon;
   document.querySelectorAll(".hand").forEach((hand) => {
     const active = hand.querySelector(".active");
     const name = hand.id === "leftHand" ? "Main gauche" : "Main droite";
-    hand.setAttribute("aria-label", active ? `${name} : ${finger.name} à utiliser` : `${name}, doigts colorés comme les touches du clavier`);
+    const activeFinger = active ? fingerData[active.dataset.finger] : null;
+    hand.setAttribute("aria-label", activeFinger ? `${name} : ${activeFinger.name} à utiliser` : `${name}, doigts colorés comme les touches du clavier`);
   });
 }
 
@@ -468,11 +586,19 @@ function voiceGuidance() {
   if (expected === undefined) return "";
   const finger = fingerData[keyFingers[normalized(expected)]];
   const letterNames = { a: "a", b: "bé", c: "cé", d: "dé", e: "eu", f: "effe", g: "gé", h: "ache", i: "i", j: "ji", k: "ka", l: "elle", m: "emme", n: "enne", o: "o", p: "pé", q: "ku", r: "erre", s: "esse", t: "té", u: "u", v: "vé", w: "double vé", x: "iks", y: "i grec", z: "zède" };
-  const names = { " ": "la touche espace", ".": "un point", ",": "une virgule", ";": "un point-virgule", "!": "un point d'exclamation", "é": "la lettre é, accent aigu", "è": "la lettre è, accent grave" };
+  const names = { " ": "la touche espace", ".": "un point", "?": "un point d'interrogation", "€": "le symbole euro", ",": "une virgule", ";": "un point-virgule", "!": "un point d'exclamation", "'": "une apostrophe", "é": "la lettre é, accent aigu", "è": "la lettre è, accent grave", "à": "la lettre à, accent grave", "ç": "la lettre cé cédille", "ù": "la lettre u, accent grave" };
   const letter = letterNames[normalized(expected)];
   const name = names[expected] || (letter ? `la lettre ${letter}` : expected);
-  const modifier = expected === "." ? "Maintiens la touche majuscule avec ton auriculaire gauche et appuie sur la touche point-virgule. " : "";
-  return `Tape ${name}. Utilise ton ${finger.name}. ${modifier}`;
+  const caseInstruction = usesCaseGuidance(expected)
+    ? isUppercaseLetter(expected) ? " en majuscule" : " en minuscule, sans touche Maj"
+    : "";
+  const modifier = modifierDetailsFor(expected, keyFingers[normalized(expected)]);
+  const spokenBaseKey = { ".": "point-virgule", "?": "virgule", "/": "deux-points", "§": "point d'exclamation", "€": "E" }[expected] || letter || name;
+  if (modifier) {
+    const modifierFinger = fingerData[modifier.fingerCode];
+    return `Tape ${name}${caseInstruction}. Premier doigt : avec ton ${modifierFinger.name}, maintiens la touche ${modifier.label}. Deuxième doigt : avec ton ${finger.name}, appuie sur la touche ${spokenBaseKey}.`;
+  }
+  return `Tape ${name}${caseInstruction}. Avec ton ${finger.name}, appuie sur la touche ${spokenBaseKey}.`;
 }
 
 function speak(text) {
@@ -568,7 +694,7 @@ function playSuccess() {
 
 document.addEventListener("keydown", (event) => {
   if (elements.practice.hidden) return;
-  if (event.ctrlKey || event.altKey || event.metaKey) return;
+  if ((event.ctrlKey || event.altKey || event.metaKey) && event.key !== "€") return;
   if (event.key === " " && event.target instanceof Element && event.target.closest("button")) return;
   if (event.key === " " || event.key.length === 1) {
     event.preventDefault();
