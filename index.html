@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#6556e8">
+  <title>Clavier Magique</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="sky" aria-hidden="true">
+    <span class="cloud cloud-one"></span>
+    <span class="cloud cloud-two"></span>
+    <span class="star star-one">✦</span>
+    <span class="star star-two">✦</span>
+  </div>
+
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Accueil Clavier Magique">
+      <span class="brand-icon">⌨</span>
+      <span><strong>Clavier</strong>Magique</span>
+    </a>
+    <div class="header-actions">
+      <div class="star-score" title="Étoiles gagnées">
+        <span>⭐</span>
+        <strong id="totalStars">0</strong>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">APPRENDS EN T'AMUSANT !</p>
+        <h1>Prêt à faire danser<br><span>tes doigts ?</span></h1>
+        <p class="hero-copy">Regarde la couleur, choisis le bon doigt<br>et deviens un champion du clavier AZERTY !</p>
+      </div>
+      <div class="mascot-wrap" aria-hidden="true">
+        <div class="sparkle sparkle-a">✦</div>
+        <div class="sparkle sparkle-b">✦</div>
+        <div class="mascot">
+          <div class="mascot-hair"></div>
+          <div class="mascot-face">
+            <span class="eye left-eye"></span><span class="eye right-eye"></span>
+            <span class="cheek left-cheek"></span><span class="cheek right-cheek"></span>
+            <span class="smile"></span>
+          </div>
+          <div class="mascot-body"><span>⌨</span></div>
+          <div class="mascot-arm arm-left"></div>
+          <div class="mascot-arm arm-right"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="level-section" aria-labelledby="levelsTitle">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow purple">TON AVENTURE</p>
+          <h2 id="levelsTitle">Choisis ton niveau</h2>
+        </div>
+        <p id="progressLabel">0 niveau terminé sur 5</p>
+      </div>
+      <div class="levels" id="levelList"></div>
+    </section>
+
+    <section class="practice-card" id="practice" aria-labelledby="practiceTitle" hidden>
+      <div class="practice-top">
+        <div class="lesson-title">
+          <span class="lesson-number" id="lessonNumber">1</span>
+          <div>
+            <p id="lessonKicker">NIVEAU 1</p>
+            <h2 id="practiceTitle" tabindex="-1">Les touches magiques</h2>
+          </div>
+        </div>
+        <div class="live-stats">
+          <div title="Le chronomètre démarre à la première frappe et s'arrête à la fin de l'exercice."><span>⏱ Temps</span><strong id="elapsedTime">00:00</strong></div>
+          <div title="Mots par minute : 5 caractères correctement tapés, espaces compris, comptent pour un mot. Calcul à partir d'une seconde de frappe."><span>Vitesse</span><strong id="typingSpeed">0 mots/min</strong></div>
+          <div><span>Précision</span><strong id="accuracy">100%</strong></div>
+          <div><span>Série</span><strong id="streak">0 🔥</strong></div>
+        </div>
+      </div>
+
+      <div class="coach">
+        <div class="coach-avatar" aria-hidden="true">🦊</div>
+        <div class="coach-bubble">
+          <p id="coachText">Pose tes index sur les touches F et J. Sens-tu les petits traits sous tes doigts ?</p>
+        </div>
+      </div>
+      <div class="voice-controls">
+        <button class="secondary-button" id="voiceButton" aria-pressed="false">🗣️ Activer la voix</button>
+        <button class="secondary-button" id="repeatButton" disabled>↻ Réécouter la consigne</button>
+        <button class="secondary-button" id="soundButton" aria-pressed="true" title="Effets sonores activés">🔊 Couper les effets sonores</button>
+        <label class="voice-choice" for="voiceSelect">Voix
+          <select id="voiceSelect" disabled><option>Chargement des voix…</option></select>
+        </label>
+      </div>
+      <p class="voice-status" id="voiceStatus" role="status"></p>
+
+      <div class="target-zone" aria-live="polite">
+        <p class="target-label">Tape les lettres</p>
+        <div class="target-text" id="targetText"></div>
+        <div class="progress-track"><span id="exerciseProgress"></span></div>
+      </div>
+
+      <div class="finger-guide">
+        <div class="hand-side">
+          <span class="hand-label">MAIN GAUCHE</span>
+          <svg class="hand left-hand" id="leftHand" viewBox="0 0 180 220" role="img" aria-label="Main gauche, doigts colorés comme les touches du clavier"></svg>
+        </div>
+        <div class="finger-callout">
+          <span id="fingerIcon">☝️</span>
+          <p>Utilise ton<br><strong id="fingerName">index gauche</strong></p>
+        </div>
+        <div class="hand-side">
+          <span class="hand-label">MAIN DROITE</span>
+          <svg class="hand right-hand" id="rightHand" viewBox="0 0 180 220" role="img" aria-label="Main droite, doigts colorés comme les touches du clavier"></svg>
+        </div>
+      </div>
+
+      <div class="keyboard-wrap">
+        <div class="keyboard" id="keyboard" aria-label="Clavier AZERTY interactif"></div>
+      </div>
+
+      <div class="legend">
+        <span><i class="dot c-pinky"></i>Auriculaire</span>
+        <span><i class="dot c-ring"></i>Annulaire</span>
+        <span><i class="dot c-middle"></i>Majeur</span>
+        <span><i class="dot c-index"></i>Index</span>
+        <span><i class="dot c-thumb"></i>Pouce</span>
+      </div>
+
+      <div class="practice-actions">
+        <button class="secondary-button levels-button" id="backButton">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+            <rect x="3" y="3" width="7" height="7" rx="2"/>
+            <rect x="14" y="3" width="7" height="7" rx="2"/>
+            <rect x="3" y="14" width="7" height="7" rx="2"/>
+            <rect x="14" y="14" width="7" height="7" rx="2"/>
+          </svg>
+          Retour aux niveaux
+        </button>
+        <button class="secondary-button" id="previousButton">← Exercice précédent</button>
+        <button class="secondary-button" id="restartButton">↻ Recommencer</button>
+        <button class="primary-button" id="nextButton">Exercice suivant <span>→</span></button>
+      </div>
+    </section>
+  </main>
+
+  <div class="celebration" id="celebration" role="dialog" aria-modal="true" aria-labelledby="celebrationTitle" hidden>
+    <div class="confetti" aria-hidden="true"></div>
+    <div class="celebration-card">
+      <div class="trophy">🏆</div>
+      <p class="eyebrow purple">BRAVO !</p>
+      <h2 id="celebrationTitle">Mission réussie !</h2>
+      <p id="celebrationMessage">Tes doigts ont été super rapides.</p>
+      <div class="earned-stars" id="earnedStars">⭐⭐⭐</div>
+      <div class="result-grid">
+        <div><strong id="resultAccuracy">100%</strong><span>Précision</span></div>
+        <div><strong id="resultErrors">0</strong><span>Erreur</span></div>
+        <div class="result-time"><strong id="resultTime">00:00</strong><span>Temps de l'exercice</span></div>
+        <div class="result-speed"><strong id="resultSpeed">0</strong><span>Mots par minute</span></div>
+      </div>
+      <button class="primary-button" id="continueButton">Continuer l'aventure →</button>
+    </div>
+  </div>
+
+  <footer>
+    <span>Fait avec 💜 pour les petits champions du clavier</span>
+    <span>Clavier français AZERTY</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
